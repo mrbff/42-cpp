@@ -24,7 +24,7 @@ int add(Contact *contact)
 int main(void)
 {
     std::string command;
-    Contact book[8];
+    Contact *book = new Contact;
     uint8_t i = 7;
 
     while (1)
@@ -33,7 +33,7 @@ int main(void)
         if (command == (std::string)"EXIT")
             return (0);
         else if (command == (std::string)"ADD")
-            add(&book[++i]);
+            add(book[++i]);
     }
     return (0);
 }

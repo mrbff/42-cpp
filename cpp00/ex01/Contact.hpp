@@ -1,15 +1,24 @@
 #ifndef CONTACT_HPP
 #define CONTACT_HPP
 
-#include "phonebook.hpp"
+#include <iostream>
 
 class Contact {
-  public:
-    std::string fname{};
-    std::string lname{};
-    std::string nname{};
-    std::string phone{};
+  private:
+    std::string fname;
+    std::string lname;
+    std::string nname;
+    std::string phone;
     std::string secret;
+  public:
+    std::string getter(char *s)
+    {
+        if 
+    }
+    std::string setter()
+    {
+
+    }
 };
 
 #endif
