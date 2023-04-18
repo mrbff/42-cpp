@@ -6,7 +6,13 @@
 
 class PhoneBook {
     public:
+        PhoneBook(void);
+        ~PhoneBook(void);
+
+        int addCont(void);
+    private:
         Contact contacts[8];
+        int i;
 };
 
 #endif
