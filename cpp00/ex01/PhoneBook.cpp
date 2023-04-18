@@ -6,11 +6,9 @@ PhoneBook::PhoneBook(void)
 }
 
 PhoneBook::~PhoneBook(void)
-{
+{}
 
-}
-
-int PhoneBook::addCont(void)
+void PhoneBook::addCont(void)
 {
     Contact     tmp;
     std::string s;
@@ -19,8 +17,9 @@ int PhoneBook::addCont(void)
     std::cin >> s;
     if (s.empty())
     {
+        std::cin.clear();
         std::cout << std::endl << "Error" << std::endl;
-        return (1);
+        return ;
     }
     else
         tmp.setFname(s);
@@ -30,9 +29,11 @@ int PhoneBook::addCont(void)
     std::cin >> s;
     if (s.empty())
     {
+        std::cin.clear();
         std::cout << std::endl << "Error" << std::endl;
-        return (1);
+        return ;
     }
+    else
         tmp.setLname(s);
 
     
@@ -41,8 +42,9 @@ int PhoneBook::addCont(void)
     std::cin >> s;
     if (s.empty())
     {
+        std::cin.clear();
         std::cout << std::endl << "Error" << std::endl;
-        return (1);
+        return ;
     }
     else
         tmp.setNname(s);
@@ -53,8 +55,9 @@ int PhoneBook::addCont(void)
     std::cin >> s;
     if (s.empty())
     {
+        std::cin.clear();
         std::cout << std::endl << "Error" << std::endl;
-        return (1);
+        return ;
     }
     else
         tmp.setPhone(s);
@@ -65,8 +68,9 @@ int PhoneBook::addCont(void)
     std::cin >> s;
     if (s.empty())
     {
+        std::cin.clear();
         std::cout << std::endl << "Error" << std::endl;
-        return (1);
+        return ;
     }
     else
         tmp.setSecret(s);
@@ -79,5 +83,54 @@ int PhoneBook::addCont(void)
     this->contacts[this->i].setSecret(tmp.getSecret());
 
     this->i = (this->i + 1) % 8;
-    return (0);
+}
+
+std::string trunc(std::string s)
+{
+    if (s.length() > 10)
+    {
+        s = s.substr(0, 10);
+        for (int i = 9; i > 6; i--)
+            s[i] = '.';
+    }
+    return (s);
+}
+
+void PhoneBook::displayBook(void)
+{
+    int i = -1;
+    std::string fn, ln, nn;
+
+    while(++i < this->i)
+    {
+        fn = trunc(this->contacts[i].getFname());
+        ln = trunc(this->contacts[i].getLname());
+        nn = trunc(this->contacts[i].getNname());
+
+        std::cout << std::right
+        << std::setw(10) << i << "|" 
+        << std::setw(10) << fn << "|"
+        << std::setw(10) << ln << "|" 
+        << std::setw(10) << nn << std::endl;
+    }
+    std::cout << std::endl;
+}
+
+void PhoneBook::searchCont(void)
+{
+    int i;
+
+    std::cout << "Type the ID of the contact to display: ";
+    std::cin >> i;
+    if (i < 0 || i > 7)
+    {
+        std::cout << "Error, Wrong ID" << std::endl;
+        return ;
+    }
+    std::cout << this->contacts[i].getFname() << std::endl;
+    std::cout << this->contacts[i].getLname() << std::endl;
+    std::cout << this->contacts[i].getNname() << std::endl;
+    std::cout << this->contacts[i].getPhone() << std::endl;
+    std::cout << this->contacts[i].getSecret() << std::endl;
+    std::cout << std::endl;
 }

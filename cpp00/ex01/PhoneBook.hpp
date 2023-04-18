@@ -1,7 +1,7 @@
 #ifndef PHONEBOOK_HPP
 #define PHONEBOOK_HPP
 
-#include <stdint.h>
+#include <iomanip>
 #include "Contact.hpp"
 
 class PhoneBook {
@@ -9,7 +9,9 @@ class PhoneBook {
         PhoneBook(void);
         ~PhoneBook(void);
 
-        int addCont(void);
+        void addCont(void);
+        void displayBook(void);
+        void searchCont(void);
     private:
         Contact contacts[8];
         int i;
