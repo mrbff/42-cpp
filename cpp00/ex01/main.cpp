@@ -5,25 +5,17 @@ int main(void)
     std::string command;
     PhoneBook   pb;
     
-    while (1)
+    while (std::getline(std::cin, command))
     {
-        
-        
-    
-        std::cin >> command;
         if (command == (std::string)"EXIT")
             return (0);
         else if (command == (std::string)"ADD")
             pb.addCont();    
         else if (command == (std::string)"SEARCH")
-        {
             pb.displayBook();
-            pb.searchCont();
-        }
+        else
+            std::cout << "\r\033[A\33[2K";
         command.clear();
-        std::cin.clear();
-    /*    else
-            std::cout << "\r\033[A\33[2K";*/
     }
     return (0);
 }

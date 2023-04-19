@@ -2,6 +2,7 @@
 #define PHONEBOOK_HPP
 
 #include <iomanip>
+#include <cstdlib>
 #include "Contact.hpp"
 
 class PhoneBook {
@@ -15,6 +16,7 @@ class PhoneBook {
     private:
         Contact contacts[8];
         int i;
+        int tot;
 };
 
 #endif
