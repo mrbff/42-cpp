@@ -1,5 +1,6 @@
 #pragma once
 #include <iostream>
+#include <string>
 
 class Weapon {
     public:
@@ -9,4 +10,4 @@ class Weapon {
         void setType(std::string type);
     private:
         std::string _type;
-}
+};
