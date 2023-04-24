@@ -1,10 +1,10 @@
-NAME = zombie
+NAME = violence
 
 CFLAGS = -Wall -Wextra -Werror -g -std=c++98
 
 CC = c++
 
-SRCS = main.cpp Zombie.cpp newZombie.cpp  randomChump.cpp
+SRCS = main.cpp Weapon.cpp HumanA.cpp HumanB.cpp
 
 all: $(NAME)
 
