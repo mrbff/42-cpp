@@ -1,10 +1,15 @@
-#include "FragTrap.hpp"
+#include "DiamondTrap.hpp"
 
 int main()
 {
-    FragTrap claptrap("Frah");
-    FragTrap claptrap2(claptrap);
-    claptrap.highFivesGuys();
+    DiamondTrap diamond("Diamante");
+
+    diamond.whoAmI();
+    diamond.attack("target");
+    diamond.takeDamage(10);
+    diamond.beRepaired(5);
+    diamond.guardGate();
+    diamond.highFivesGuys();
 
     return 0;
 }
