@@ -1,6 +1,6 @@
 NAME := test
 
-CFLAGS := -Wall -Wextra -Werror -g -std=c++98
+CFLAGS := -Wall -Wextra -Werror -g -std=c++98 -Wshadow
 
 CC := c++
 
