@@ -1,24 +1,23 @@
-#pragma once
 #include "Animal.hpp"
 
-Animal::Animal() : _type("animal")
+Animal::Animal() : _type("Generic Animal")
 {
-    std::cout << "A new " << _type << " is born!" << std::endl;
+    std::cout << "A new animal is born!" << std::endl;
 }
 
-Animal::Animal(std::string type) : _type(type)
+/*Animal::Animal(std::string type) : _type(type)
 {
-    std::cout << "A new " << _type << " is born!" << std::endl;
-}
+    std::cout << "A new animal is born!" << std::endl;
+}*/
 
 Animal::Animal(Animal const & ref) : _type(ref._type)
 {
-    std::cout << "A new " << _type << " is born!" << std::endl;
+    std::cout << "A new animal is born!" << std::endl;
 }
 
 Animal::~Animal()
 {
-    std::cout << "The " << _type << " is dead." << std::endl;
+    std::cout << "The animal is dead." << std::endl;
 }
 
 Animal& Animal::operator=(const Animal& ref)
@@ -28,12 +27,18 @@ Animal& Animal::operator=(const Animal& ref)
     return (*this);
 }
 
-void Animal::makeSound (void)
+void Animal::makeSound (void) const
 {
-    if (_type == "Dog")
-        std::cout << "wolf wolf!" << std::endl;
-    else if (_type == "Cat")
-        std::cout << "mew mew!" << std::endl;
-    else
         std::cout << "Generic roar!" << std::endl;
+}
+
+const std::string	&Animal::getType( void ) const
+{
+	return (_type);
+}
+
+std::ostream	&operator<<( std::ostream &ostream, const Animal &instance )
+{
+	ostream << instance.getType();
+	return ostream;
 }

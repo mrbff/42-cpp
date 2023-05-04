@@ -1,16 +1,16 @@
 #pragma once
 #include <iostream>
 
-class Animal {
+class WrongAnimal {
     public:
-        Animal();
+        WrongAnimal();
     //    Animal(std::string type);
-        Animal(Animal const & ref);
-        virtual ~Animal();
+        WrongAnimal(WrongAnimal const & ref);
+        virtual ~WrongAnimal();
 
         const std::string	&getType(void) const;
 
-        Animal& operator=(const Animal& ref);
+        WrongAnimal& operator=(const WrongAnimal& ref);
 
         virtual void makeSound (void) const;
     protected:
