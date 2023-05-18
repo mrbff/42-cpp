@@ -1,9 +1,14 @@
-#pragma once
+#ifndef BUREAUCRAT_HPP
+#define BUREAUCRAT_HPP
+
 #include <iostream>
 #include <stdexcept>
+#include "Form.hpp"
 
 #define MAX_GRADE 1
 #define MIN_GRADE 150
+
+class Form;
 
 class Bureaucrat {
     public:
@@ -18,6 +23,8 @@ class Bureaucrat {
         
         void promote(int grades);
         void demote(int grades);
+
+        bool signForm(Form &form);
 
         class GradeTooHighException : public std::exception {
             public:
@@ -43,3 +50,5 @@ class Bureaucrat {
 };
 
 std::ostream& operator<<(std::ostream& os, const Bureaucrat& bureaucrat);
+
+#endif

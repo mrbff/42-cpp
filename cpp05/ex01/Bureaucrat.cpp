@@ -50,6 +50,22 @@ void	Bureaucrat::_checkGrade(void) const
 		throw Bureaucrat::GradeTooLowException();
 }
 
+bool    Bureaucrat::signForm(Form &form)
+{
+    if (form.beSigned(*this))
+	{
+		std::cout << this->_name << " signs form " << form.getName()
+			<< std::endl;
+		return true;
+	}
+	else
+	{
+		std::cout << this->_name << " cannot sign form " << form.getName()
+			<< ", grade too low." << std::endl;
+		return false;
+	}
+} 
+
 std::ostream &	operator<<( std::ostream & os, Bureaucrat const & bureaucrat)
 {
 	os << bureaucrat.getName() << ", Bureaucrat grade " << bureaucrat.getGrade();
