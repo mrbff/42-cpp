@@ -39,14 +39,14 @@ class AForm {
 				}
 	    };
 
-		class CantExecuteForm : public std::exception
-	    {
-	        public:
-		        virtual const char* what() const throw()
+		class NotSignedException : public std::exception
+		{
+        	public:
+            	virtual const char* what() const throw()
 				{
-					return ("The form can't be executed");
+					return "Form not signed";
 				}
-	    };
+    	};
 	
     private:
         AForm();
@@ -56,6 +56,6 @@ class AForm {
         const int           _gradeToExec;
 };
 
-std::ostream	&operator<<( std::ostream &os, const AForm &Aform);
+std::ostream	&operator<<( std::ostream &os, const AForm &form);
 
 #endif
