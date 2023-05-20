@@ -40,12 +40,6 @@ bool	Form::isSigned() const
 	return _signed;
 }
 
-void	Form::checkExec(Bureaucrat &bureaucrat) const
-{
-	if (_signed == false || bureaucrat.getGrade() > _gradeToExec)
-		throw Form::CantExecuteForm();
-}
-
 void	Form::checkGrades() const
 {
 	if (_gradeToExec < MAX_GRADE || _gradeToSign < MAX_GRADE)

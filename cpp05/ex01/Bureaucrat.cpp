@@ -61,7 +61,7 @@ bool    Bureaucrat::signForm(Form &form)
 	else
 	{
 		std::cout << this->_name << " cannot sign form " << form.getName()
-			<< ", grade too low." << std::endl;
+			<< " because the grade is too low." << std::endl;
 		return false;
 	}
 } 
