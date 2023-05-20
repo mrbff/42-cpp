@@ -19,10 +19,10 @@ $(NAME): $(OBJS)
 all: $(NAME)
 
 clean:
-	$(RM) $(OBJS)
+	$(RM) *.o
 
 fclean: clean
-	$(RM) $(NAME)
+	$(RM) $(NAME) *_shrubbery
 
 re: fclean all
 

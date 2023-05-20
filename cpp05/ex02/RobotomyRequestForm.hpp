@@ -1,27 +1,19 @@
-#include "RobotomyRequestForm.hpp"
+#pragma once
 
-RobotomyRequestForm::RobotomyRequestForm(const std::string& target) : Form("Robotomy Request Form", 72, 45), _target(target) {}
+#include "AForm.hpp"
 
-RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm& ref) : Form(ref), _target(ref._target) {}
-
-RobotomyRequestForm::~RobotomyRequestForm() {}
-
-RobotomyRequestForm&    RobotomyRequestForm::operator=(RobotomyRequestForm& ref)
+class RobotomyRequestForm : public AForm
 {
-    (void)ref;
-    return *this;
-}
+    public:
+        RobotomyRequestForm(const std::string& target);
+        RobotomyRequestForm(const RobotomyRequestForm& ref);
+        ~RobotomyRequestForm();
 
-void    RobotomyRequestForm::execute(const Bureaucrat& executor) const
-{
-    if (executor.getGrade() > this->getGradeToExec())
-        throw AForm::GradeTooLowException();
-    else
-    {
-        static int i;
-        if (i++ % 2)
-            std::cout << "* DRILLING NOISES *" << _target << " has been robotomized succesfully!" << std::endl;
-        else
-            std::cout << "Robotomy on " << _target << " has failed succesfully!" << std::endl;
-    }
-}
+        RobotomyRequestForm &operator=(RobotomyRequestForm& ref);
+
+        void        execute(const Bureaucrat& executor) const;
+    
+    private:
+        const std::string   _target;
+        RobotomyRequestForm();
+};

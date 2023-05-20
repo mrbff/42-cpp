@@ -12,11 +12,11 @@ ShrubberyCreationForm& ShrubberyCreationForm::operator=(ShrubberyCreationForm& r
     return *this;
 }
 
-void    ShrubberyCreationForm::execute( const Bureaucrat& executor) const
+void    ShrubberyCreationForm::execute(const Bureaucrat& executor) const
 {
-    if ( this->isSigned() == false)
+    if (this->isSigned() == false)
         throw AForm::NotSignedException();
-    else if (executor.getGrade() > this->getGradeToExec() ) {
+    else if (executor.getGrade() > this->getGradeToExec()) {
         throw AForm::GradeTooLowException();
     }
 
