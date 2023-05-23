@@ -5,10 +5,9 @@ int main(int ac, char **av)
     if (ac != 2)
         return (EXIT_FAILURE);
     try {
-        ScalarConverter converter;
-        converter.convert(av[1]);
-
-        std::cout << converter;
+        
+        ScalarConverter::convert(av[1]);
+        ScalarConverter::printAll();
     }
     catch (const std::exception& e)
     {
