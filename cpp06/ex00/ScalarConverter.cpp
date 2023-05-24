@@ -143,7 +143,7 @@ void ScalarConverter::printChar()
     else if (!std::isprint(_c))
         std::cout << "Not displayable";
     else
-        std::cout << _c;
+        std::cout << "'" << _c << "'";
     std::cout << std::endl;
 }
 
