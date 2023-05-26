@@ -1,7 +1,7 @@
 #include <iostream>
 #include "Array.hpp"
 
-#define MAX_VAL 750
+#define MAX_VAL 75
 int main(int, char**)
 {
     Array<int> numbers(MAX_VAL);
@@ -13,12 +13,15 @@ int main(int, char**)
         numbers[i] = value;
         mirror[i] = value;
     }
+    std::cout << numbers << std::endl;
+    std::cout << std::endl << std::endl;
     //SCOPE
     {
         Array<int> tmp = numbers;
         Array<int> test(tmp);
+        std::cout << tmp << std::endl;
     }
-
+    std::cout << std::endl << std::endl;
     for (int i = 0; i < MAX_VAL; i++)
     {
         if (mirror[i] != numbers[i])
@@ -43,11 +46,12 @@ int main(int, char**)
     {
         std::cerr << e.what() << '\n';
     }
-
+    std::cout << std::endl << std::endl;
     for (int i = 0; i < MAX_VAL; i++)
     {
         numbers[i] = rand();
     }
+    std::cout << numbers << std::endl;
     delete [] mirror;//
     return 0;
 }
