@@ -9,7 +9,7 @@ SRCS := main.cpp
 OBJS :=  $(SRCS:.cpp=.o)
 
 .cpp.o:
-	${CC} ${FLAGS} -c $< -o ${<:.cpp=.o}
+	${CC} ${CFLAGS} -c $< -o ${<:.cpp=.o}
 
 RM :=	rm -f
 

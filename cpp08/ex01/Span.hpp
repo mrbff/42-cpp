@@ -12,15 +12,18 @@ class Span {
 
         Span & operator=(const Span & ref);
 
+        unsigned int operator[](unsigned int i) const;
+
         void    addNumber(int num);
 
         unsigned int shortestSpan() const;
         unsigned int longestSpan() const;
 
-        
-        class NotEnoughSpace : public std::exception
+        unsigned int getSize() const;
+
+        class OutOfBounds : public std::exception
         {
-            virtual const char* what() const throw() { return ("Not enough space in the span to add the range."); }
+            virtual const char* what() const throw() { return ("Index is out of bounds."); }
         };
 
         class Full : public std::exception
@@ -36,6 +39,7 @@ class Span {
     private:
         Span();
 
-        std::vector<int> _container;
-        std::vector<int> _sorted;
+        unsigned int        _size;
+        std::vector<int>    _container;
+        std::vector<int>    _sorted;
 };

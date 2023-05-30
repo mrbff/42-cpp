@@ -12,9 +12,9 @@ int main( int ac, char ** av )
     std::list<int>        list(arr, arr + sizeof(arr) / sizeof(int));
     std::vector<char>      vect2(s, s + sizeof(s));
 
-    easyfind(vect, std::stoi(av[1]));
-    easyfind(list, std::stoi(av[1]));
-    easyfind(vect2, std::stoi(av[1]));
+    easyfind(vect, std::atoi(av[1]));
+    easyfind(list, std::atoi(av[1]));
+    easyfind(vect2, std::atoi(av[1]));
 
 
     return EXIT_SUCCESS;
