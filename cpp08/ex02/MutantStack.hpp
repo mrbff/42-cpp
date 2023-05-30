@@ -4,22 +4,36 @@
 #include <stack>
 
 template <typename T>
-class MutantStack {
+class MutantStack: public std::stack<T> {
     public:
-        MutantStack();
-        MutantStack(MutantStack const & ref);
-        ~MutantStack();
+        MutantStack() {}
+        MutantStack(const MutantStack<T> &ref) : std::stack<T>(ref) {}
+        ~MutantStack() {}
 
-        MutantStack & operator=(const MutantStack & ref);
+        MutantStack<T> &operator=(const MutantStack<T> &ref) {
+            if (this != &ref) {
+                std::stack<T>::operator=(ref);
+            }
+            return *this;
+        }
 
-        bool                empty() const;
-        size_type           size() const;
-        value_type&         top();
-        const value_type&   top() const;
-        void                push (const value_type& val);
-        void                pop();
-        void                swap (MutantStack& x);
+        typedef typename std::stack<T>::container_type::iterator iterator;
+        typedef typename std::stack<T>::container_type::const_iterator const_iterator;
 
-    private:
-        std::stack<T>   _ms;
+        iterator begin() {
+            return this->c.begin();
+        }
+
+        iterator end() {
+            return this->c.end();
+        }
+
+        const_iterator begin() const {
+            return this->c.begin();
+        }
+
+        const_iterator end() const {
+            return this->c.end();
+        }
 };
+    

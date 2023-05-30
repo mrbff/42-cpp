@@ -27,10 +27,22 @@ int main()
     
     while (it != ite)
     {
-        std::cout << *it << std::endl;
+        std::cout << *it << " ";
         ++it;
     }
+    std::cout << std::endl;    
 
-    std::stack<int> s(mstack);
+    MutantStack<int> s(mstack);
+    MutantStack<int>::iterator sit = s.begin();
+    MutantStack<int>::iterator site = s.end();
+    while (sit != site)
+    {
+        std::cout << *sit << " ";
+        ++sit;
+    }
+    std::cout << std::endl;
+    
+    std::stack<int> st(s);
+    
     return 0;
 }
