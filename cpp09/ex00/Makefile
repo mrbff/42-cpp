@@ -4,7 +4,7 @@ CFLAGS := -Wall -Wextra -Werror -g -std=c++98 -Wshadow
 
 CC := c++
 
-SRCS := main.cpp
+SRCS := main.cpp BitcoinExchange.cpp
 
 OBJS :=  $(SRCS:.cpp=.o)
 
