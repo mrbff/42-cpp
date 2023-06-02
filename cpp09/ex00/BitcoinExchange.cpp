@@ -45,7 +45,10 @@ void processInputFile(const std::string& filename, const std::map<std::string, f
         std::string date;
         std::string value;
         
-        if (std::getline(iss, date, '|') && std::getline(iss, value)) {
+        if (!(std::getline(iss, date, '|') && std::getline(iss, value) && isValidDate(date)))
+            std::cout << "Error: bad input => " << line << std::endl;
+        else
+        {
             float floatValue;
            
             try {
@@ -60,50 +63,55 @@ void processInputFile(const std::string& filename, const std::map<std::string, f
                 continue;
 
             std::map<std::string, float>::const_iterator it = exchangeRates.find(date);
-            if (it == exchangeRates.end())
+            if (it != exchangeRates.end())
+                std::cout << date << " => " << floatValue << " = " << std::floor(floatValue * it->second * 100) / 100 << std::endl;
+            else
             {
                 // If date not found, find the closest lower date
                 std::map<std::string, float>::const_iterator lower = exchangeRates.lower_bound(date);
-                
                 if (lower != exchangeRates.begin())
                 {
                     // If lower date exists, use it
                     --lower;
+                //    std::cout << std::endl << lower->first << " - " << lower->second << std::endl;
                     std::cout << date << " => " << floatValue << " = " << std::floor(floatValue * lower->second * 100) / 100 << std::endl;
                 }
                 else
                     std::cerr << "Error: no exchange rate found for date " << date << "." << std::endl;
             }
-            else
-                std::cout << date << " => " << floatValue << " = " << std::floor(floatValue * it->second * 100) / 100 << std::endl;
         }
-        else
-            std::cout << "Error: bad input => " << line << std::endl;
     }
     
     file.close();
 }
 
 
-/*struct tm tm;   
-std::string s("2015-11-123");
-if (strptime(s.c_str(), "%Y-%m-%d", &tm))
-    std::cout << "Validate date" << std::endl;
-else
-    std::cout << "Invalid date" << std::endl;
-
-bool isleapyear(unsigned short year){
-    return (!(year%4) && (year%100) || !(year%400));
+static bool isleapyear(unsigned short year)
+{
+    return ((!(year%4) && (year%100)) || !(year%400));
 }
 
 //1 valid, 0 invalid
-bool valid_date(unsigned short year,unsigned short month,unsigned short day){
-    unsigned short monthlen[]={31,28,31,30,31,30,31,31,30,31,30,31};
-    if (!year || !month || !day || month>12)
+static bool valid_date(int year, int month, int day)
+{
+    unsigned short monthlen[] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+    
+    if (!year || !month || !day || month > 12)
         return 0;
-    if (isleapyear(year) && month==2)
+    if (isleapyear(year) && month == 2)
         monthlen[1]++;
-    if (day>monthlen[month-1])
+    if (day > monthlen[month-1])
         return 0;
     return 1;
-}*/
+}
+
+//1 valid, 0 invalid
+bool isValidDate(std::string date)
+{
+    struct tm tm;   
+
+    if (strptime(date.c_str(), "%Y-%m-%d", &tm) && valid_date(tm.tm_year, tm.tm_mon + 1, tm.tm_mday))
+        return 1;
+    else
+        return 0;
+}
